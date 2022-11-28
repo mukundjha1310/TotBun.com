@@ -1,5 +1,6 @@
 package com.totbun.serviceImpls;
 
+import java.util.List;
 import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -10,10 +11,10 @@ import com.totbun.modules.User;
 import com.totbun.repositories.AdminLogRepo;
 import com.totbun.repositories.UserLogRepo;
 import com.totbun.repositories.UserRepo;
-import com.totbun.services.UserService;
+import com.totbun.services.UserServices;
 
 @Service
-public class UserServiceImpl implements UserService{
+public class UserServiceImpl implements UserServices{
 
 	@Autowired
 	private UserRepo uRepo;
@@ -86,6 +87,12 @@ public class UserServiceImpl implements UserService{
 			return user1.get();
 		else
 			throw new UserException("User does not exist with user Id "+user1.get().getUserId());
+	}
+
+	@Override
+	public List<User> viewAllUsers(Integer adminId) throws UserException, LogException {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 	

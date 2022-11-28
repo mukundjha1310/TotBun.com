@@ -15,14 +15,14 @@ import org.springframework.web.bind.annotation.RestController;
 import com.totbun.exceptions.LogException;
 import com.totbun.exceptions.UserException;
 import com.totbun.modules.User;
-import com.totbun.services.UserService;
+import com.totbun.services.UserServices;
 
 @RestController
 @RequestMapping("/cloudbus")
 public class UserController {
 	
 	@Autowired
-	private UserService uService;
+	private UserServices uService;
 	
 	@PostMapping("/users")
 	public ResponseEntity<User> registerUser(@Valid @RequestBody User user) throws UserException, LogException

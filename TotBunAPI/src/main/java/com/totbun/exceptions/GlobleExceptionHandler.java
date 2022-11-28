@@ -35,12 +35,72 @@ public class GlobleExceptionHandler {
 
 	}
 	
+	@ExceptionHandler(ProductException.class)
+	public ResponseEntity<MyErrorDetails> otherExceptionHandler(ProductException pe, WebRequest wReq) {
+
+		MyErrorDetails error = new MyErrorDetails();
+		error.setTimestamp(LocalDateTime.now());
+		error.setMessage(pe.getMessage());
+		error.setDetails(wReq.getDescription(false));
+
+		return new ResponseEntity<MyErrorDetails>(error, HttpStatus.BAD_REQUEST);
+
+	}
+	
+	@ExceptionHandler(OrderException.class)
+	public ResponseEntity<MyErrorDetails> otherExceptionHandler(OrderException oe, WebRequest wReq) {
+
+		MyErrorDetails error = new MyErrorDetails();
+		error.setTimestamp(LocalDateTime.now());
+		error.setMessage(oe.getMessage());
+		error.setDetails(wReq.getDescription(false));
+
+		return new ResponseEntity<MyErrorDetails>(error, HttpStatus.BAD_REQUEST);
+
+	}
+	
 	@ExceptionHandler(LogException.class)
 	public ResponseEntity<MyErrorDetails> otherExceptionHandler(LogException le, WebRequest wReq) {
 
 		MyErrorDetails error = new MyErrorDetails();
 		error.setTimestamp(LocalDateTime.now());
 		error.setMessage(le.getMessage());
+		error.setDetails(wReq.getDescription(false));
+
+		return new ResponseEntity<MyErrorDetails>(error, HttpStatus.BAD_REQUEST);
+
+	}
+	
+	@ExceptionHandler(SalesException.class)
+	public ResponseEntity<MyErrorDetails> otherExceptionHandler(SalesException se, WebRequest wReq) {
+
+		MyErrorDetails error = new MyErrorDetails();
+		error.setTimestamp(LocalDateTime.now());
+		error.setMessage(se.getMessage());
+		error.setDetails(wReq.getDescription(false));
+
+		return new ResponseEntity<MyErrorDetails>(error, HttpStatus.BAD_REQUEST);
+
+	}
+	
+	@ExceptionHandler(CartException.class)
+	public ResponseEntity<MyErrorDetails> otherExceptionHandler(CartException ce, WebRequest wReq) {
+
+		MyErrorDetails error = new MyErrorDetails();
+		error.setTimestamp(LocalDateTime.now());
+		error.setMessage(ce.getMessage());
+		error.setDetails(wReq.getDescription(false));
+
+		return new ResponseEntity<MyErrorDetails>(error, HttpStatus.BAD_REQUEST);
+
+	}
+	
+	@ExceptionHandler(PaymentException.class)
+	public ResponseEntity<MyErrorDetails> otherExceptionHandler(PaymentException pe, WebRequest wReq) {
+
+		MyErrorDetails error = new MyErrorDetails();
+		error.setTimestamp(LocalDateTime.now());
+		error.setMessage(pe.getMessage());
 		error.setDetails(wReq.getDescription(false));
 
 		return new ResponseEntity<MyErrorDetails>(error, HttpStatus.BAD_REQUEST);

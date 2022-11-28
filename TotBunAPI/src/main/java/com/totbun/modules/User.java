@@ -1,15 +1,23 @@
 package com.totbun.modules;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -38,17 +46,20 @@ public class User {
 	private String lastName;
 	
 	@NotNull(message = "Mobile number field is mandatory.")
-	@Pattern(regexp = "\\d{10}", message = "Mobile number should not be less than or more than 10.")
+	@Pattern(regexp = "\\d{10}", message = "Mobile number should not be less than or more than 10 digits.")
 	private String mobile;
 	
 	@NotNull(message = "Email Id field is mandatory.")
 	@Email(message = "Invalid Email address...")
 	private String emailId;
 	
+	@NotNull(message = "Address field is mandatory.")
 	@Embedded
 	private UserAddress userAddress;
 	
-	
+	@JsonIgnore
+	@OneToMany(cascade = CascadeType.ALL)
+	private List<Order> orders = new ArrayList<>();
 	
 	
 }
