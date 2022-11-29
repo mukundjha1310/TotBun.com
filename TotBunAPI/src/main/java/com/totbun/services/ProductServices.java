@@ -20,8 +20,8 @@ public interface ProductServices {
 	
 	public List<Product> sortProductsByRatingHighToLow() throws ProductException;
 	
-	public Product seeIndividualProductDetails() throws ProductException;
+	public Product seeIndividualProductDetails(Integer productId) throws ProductException;
 	
-	public Product addProductToCart(Integer userId, Integer productId) throws LogException, ProductException;
+	
 	
 }

@@ -14,7 +14,7 @@ import com.totbun.services.UserLogService;
 import io.swagger.v3.oas.annotations.parameters.RequestBody;
 
 @RestController
-@RequestMapping("/cloudbus")
+@RequestMapping("/totbun")
 public class UserLogController {
 	
 	@Autowired

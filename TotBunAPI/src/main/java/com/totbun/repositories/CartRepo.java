@@ -2,10 +2,10 @@ package com.totbun.repositories;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
-import com.totbun.modules.Admin;
+import com.totbun.modules.Cart;
 
 @Repository
-public interface AdminRepo extends JpaRepository<Admin, Integer>{
+public interface CartRepo extends JpaRepository<Cart, Integer>{
 	
-	public Admin findByAdminUserName(String adminUserName);
+	
 }

@@ -4,6 +4,8 @@ import java.util.List;
 
 import com.totbun.exceptions.LogException;
 import com.totbun.exceptions.OrderException;
+import com.totbun.exceptions.PaymentException;
+import com.totbun.exceptions.ProductException;
 import com.totbun.modules.Order;
 
 public interface OrderServices {
@@ -18,5 +20,7 @@ public interface OrderServices {
 	
 	public List<Order> seeCancelledOrders(Integer adminId) throws LogException, OrderException;
 	
+	public String placeOrder(Integer userId, Integer productId, String paymentMethod) throws LogException, ProductException, PaymentException;
 	
+	public List<Order> seeOrderHistory(Integer userId) throws LogException, OrderException;
 }

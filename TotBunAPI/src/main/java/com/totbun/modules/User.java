@@ -58,7 +58,7 @@ public class User {
 	private UserAddress userAddress;
 	
 	@JsonIgnore
-	@OneToMany(cascade = CascadeType.ALL)
+	@OneToMany(cascade = CascadeType.ALL, mappedBy = "user")
 	private List<Order> orders = new ArrayList<>();
 	
 	

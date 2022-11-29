@@ -13,12 +13,14 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import com.totbun.exceptions.LogException;
+import com.totbun.exceptions.ProductException;
 import com.totbun.exceptions.UserException;
+import com.totbun.modules.Cart;
 import com.totbun.modules.User;
 import com.totbun.services.UserServices;
 
 @RestController
-@RequestMapping("/cloudbus")
+@RequestMapping("/totbun")
 public class UserController {
 	
 	@Autowired
@@ -54,6 +56,14 @@ public class UserController {
 		User user1 = uService.deleteUser(userId);
 		
 		return new ResponseEntity<User>(user1, HttpStatus.FOUND);
+	}
+	
+	@PostMapping("/users/{userId}/{productId}")
+	public ResponseEntity<Cart> addProductToCart(@PathVariable("userId") Integer userId, @PathVariable("productId") Integer productId) throws LogException, ProductException
+	{
+		Cart cart = uService.addProductToCart(userId, productId);
+		
+		return new ResponseEntity<Cart>(cart, HttpStatus.ACCEPTED);
 	}
 	
 }

@@ -11,17 +11,17 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
-import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Data
 @NoArgsConstructor
-@AllArgsConstructor
 @Entity
+@Table(name = "Orders")
 public class Order {
 	
 	@Id
@@ -30,15 +30,14 @@ public class Order {
 	private Integer quantity;
 	
 	private LocalDateTime dateTime;
-	private UserAddress shippingAdd;
 	private String paymentMethod;
 	private String orderStatus;
 	
-	@JsonIgnore
 	@ManyToOne(cascade = CascadeType.ALL)
 	private User user;
 	
-	@JsonIgnore
-	@OneToMany(cascade = CascadeType.ALL)
+	@OneToMany(cascade = CascadeType.ALL, mappedBy = "order")
 	private List<Product> products = new ArrayList<>();
+	
+	
 }
