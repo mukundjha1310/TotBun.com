@@ -20,7 +20,5 @@ public interface OrderServices {
 	
 	public List<Order> seeCancelledOrders(Integer adminId) throws LogException, OrderException;
 	
-	public String placeOrder(Integer userId, Integer productId, String paymentMethod) throws LogException, ProductException, PaymentException;
 	
-	public List<Order> seeOrderHistory(Integer userId) throws LogException, OrderException;
 }

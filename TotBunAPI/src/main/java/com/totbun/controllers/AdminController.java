@@ -49,5 +49,13 @@ public class AdminController {
 		
 		return new ResponseEntity<List<User>>(users, HttpStatus.CREATED);
 	}
+	
+	@GetMapping("/admin/{adminId}/{userId}")
+	public ResponseEntity<User> viewUserById(@PathVariable("adminId") Integer adminId, @PathVariable("userId") Integer userId) throws UserException, LogException
+	{
+		User user1 = aService.viewUserById(adminId, userId);
+		
+		return new ResponseEntity<User>(user1, HttpStatus.FOUND);
+	}
 
 }

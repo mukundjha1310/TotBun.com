@@ -12,7 +12,10 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+
+import com.totbun.exceptions.CartException;
 import com.totbun.exceptions.LogException;
+import com.totbun.exceptions.PaymentException;
 import com.totbun.exceptions.ProductException;
 import com.totbun.exceptions.UserException;
 import com.totbun.modules.Cart;
@@ -51,7 +54,7 @@ public class UserController {
 	}
 	
 	@GetMapping("/users/{userId}")
-	public ResponseEntity<User> viewUser(@PathVariable("userId") Integer userId) throws UserException, LogException
+	public ResponseEntity<User> viewPersonalDetails(@PathVariable("userId") Integer userId) throws UserException, LogException
 	{
 		User user1 = uService.deleteUser(userId);
 		
@@ -64,6 +67,14 @@ public class UserController {
 		Cart cart = uService.addProductToCart(userId, productId);
 		
 		return new ResponseEntity<Cart>(cart, HttpStatus.ACCEPTED);
+	}
+	
+	@PostMapping("/users/{userId}/place_order/{paymentMethod}")
+	public ResponseEntity<String> placeOrder(@PathVariable("userId") Integer userId, @PathVariable("paymentMethod") String paymentMethod) throws LogException, CartException, PaymentException
+	{
+		String message = uService.placeOrder(userId, paymentMethod);
+		
+		return new ResponseEntity<String>(message, HttpStatus.ACCEPTED);
 	}
 	
 }

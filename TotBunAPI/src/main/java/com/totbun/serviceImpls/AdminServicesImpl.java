@@ -82,5 +82,24 @@ public class AdminServicesImpl implements AdminServices{
 		}
 		else throw new LogException("Please Login as admin first...");
 	}
+	
+	@Override
+	public User viewUserById(Integer adminId, Integer userId) throws UserException, LogException {
+		
+		Optional<CurrentAdminSession> cas = alRepo.findById(adminId);
+		
+		if(cas.isPresent())
+		{
+			Optional<User> user1 = uRepo.findById(userId);
+			
+			if(user1.isPresent()) 
+				return user1.get();
+			else
+				throw new UserException("User does not exist with user Id "+user1.get().getUserId());
+		}
+		else throw new LogException("Please Login as admin first...");
+		
+		
+	}
 
 }

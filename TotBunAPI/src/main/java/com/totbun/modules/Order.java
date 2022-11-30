@@ -11,6 +11,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -39,5 +40,11 @@ public class Order {
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "order")
 	private List<Product> products = new ArrayList<>();
 	
+	@OneToOne(cascade = CascadeType.ALL, mappedBy = "order")
+	private Sales sales;
+	
+	@JsonIgnore
+	@ManyToOne(cascade = CascadeType.ALL)
+	private OrderHistory orderHistory;
 	
 }
