@@ -18,7 +18,7 @@ public class Admin {
 	private String adminPassword;
 	
 	
-	//insert into admin values(4,'MukundJha','mukund1234');
+	//insert into admin values(4,'1234m','mukund');
 	
 	
 	

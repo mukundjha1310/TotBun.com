@@ -11,7 +11,6 @@ import com.totbun.modules.CurrentAdminSession;
 import com.totbun.modules.Product;
 import com.totbun.modules.User;
 import com.totbun.repositories.AdminLogRepo;
-import com.totbun.repositories.AdminRepo;
 import com.totbun.repositories.ProductRepo;
 import com.totbun.repositories.UserRepo;
 import com.totbun.services.AdminServices;
@@ -21,9 +20,6 @@ public class AdminServicesImpl implements AdminServices{
 	
 	@Autowired
 	private ProductRepo pRepo;
-	
-	@Autowired
-	private AdminRepo aRepo;
 	
 	@Autowired
 	private UserRepo uRepo;

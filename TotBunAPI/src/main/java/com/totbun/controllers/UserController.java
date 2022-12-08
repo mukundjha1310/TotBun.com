@@ -12,13 +12,11 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-
+import com.totbun.DTOs.CartAllDetailsDTO;
 import com.totbun.exceptions.CartException;
 import com.totbun.exceptions.LogException;
-import com.totbun.exceptions.PaymentException;
 import com.totbun.exceptions.ProductException;
 import com.totbun.exceptions.UserException;
-import com.totbun.modules.Cart;
 import com.totbun.modules.User;
 import com.totbun.services.UserServices;
 
@@ -28,6 +26,7 @@ public class UserController {
 	
 	@Autowired
 	private UserServices uService;
+	
 	
 	@PostMapping("/users")
 	public ResponseEntity<User> registerUser(@Valid @RequestBody User user) throws UserException, LogException
@@ -61,20 +60,6 @@ public class UserController {
 		return new ResponseEntity<User>(user1, HttpStatus.FOUND);
 	}
 	
-	@PostMapping("/users/{userId}/{productId}")
-	public ResponseEntity<Cart> addProductToCart(@PathVariable("userId") Integer userId, @PathVariable("productId") Integer productId) throws LogException, ProductException
-	{
-		Cart cart = uService.addProductToCart(userId, productId);
-		
-		return new ResponseEntity<Cart>(cart, HttpStatus.ACCEPTED);
-	}
 	
-	@PostMapping("/users/{userId}/place_order/{paymentMethod}")
-	public ResponseEntity<String> placeOrder(@PathVariable("userId") Integer userId, @PathVariable("paymentMethod") String paymentMethod) throws LogException, CartException, PaymentException
-	{
-		String message = uService.placeOrder(userId, paymentMethod);
-		
-		return new ResponseEntity<String>(message, HttpStatus.ACCEPTED);
-	}
 	
 }

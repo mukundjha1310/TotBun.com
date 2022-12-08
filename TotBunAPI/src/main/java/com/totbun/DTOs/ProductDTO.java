@@ -1,19 +1,14 @@
-package com.totbun.modules;
+package com.totbun.DTOs;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Data
+@AllArgsConstructor
 @NoArgsConstructor
-@Entity
-public class Product {
+public class ProductDTO {
 	
-	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Integer productId;
 	private String productTitle;
 	private String image;
@@ -22,6 +17,5 @@ public class Product {
 	private Integer productRating;
 	private String productCategory;
 	private String brand;
-
 	
 }

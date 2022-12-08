@@ -1,22 +1,25 @@
 package com.totbun.modules;
 
+import java.time.LocalDate;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Data
 @NoArgsConstructor
+@AllArgsConstructor
 @Entity
-public class Cart {
+public class Orders {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Integer cartId;
+	private Integer orderId;
 	
 	@ManyToOne
 	@JoinColumn(name = "user_Id")
@@ -30,6 +33,9 @@ public class Cart {
 	
 	private Integer totalPrice;
 	
+	private LocalDate orderDate;
 	
+	private String paymentType;
 	
+	private String OrderStatus;
 }
