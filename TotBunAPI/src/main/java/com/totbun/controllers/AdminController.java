@@ -26,7 +26,7 @@ public class AdminController {
 	@Autowired
 	private AdminServices aService;
 	
-	@PostMapping("/admin/{adminId}")
+	@PostMapping("/admin/add-new-product/{adminId}")
 	public ResponseEntity<Product> AddNewProduct(@PathVariable("adminId") Integer adminId, @RequestBody Product product) throws LogException, ProductException
 	{
 		Product p1 = aService.addNewProduct(adminId, product);
@@ -34,7 +34,23 @@ public class AdminController {
 		return new ResponseEntity<Product>(p1, HttpStatus.CREATED);
 	}
 	
-	@PutMapping("/admin/{adminId}/{productId}/{newProductQty}")
+	@GetMapping("/admin/see-individual-product-details/{adminId}/{productId}")
+	public ResponseEntity<Product> seeIndividualProductDetails(@PathVariable("adminId") Integer adminId, @PathVariable("productId") Integer productId) throws LogException, ProductException
+	{
+		Product p1 = aService.seeIndividualProductDetails(adminId, productId);
+		
+		return new ResponseEntity<Product>(p1, HttpStatus.CREATED);
+	}
+	
+	@GetMapping("/admin/see-all-products-details/{adminId}")
+	public ResponseEntity<List<Product>> seeAllProductsDetails(@PathVariable("adminId") Integer adminId) throws LogException, ProductException
+	{
+		List<Product> products = aService.seeAllProductsDetails(adminId);
+		
+		return new ResponseEntity<List<Product>>(products, HttpStatus.CREATED);
+	}
+	
+	@PutMapping("/admin/update-product-quantity/{adminId}/{productId}/{newProductQty}")
 	public ResponseEntity<Product> updateProductQuantity(@PathVariable("adminId") Integer adminId, @PathVariable("productId") Integer productId, @PathVariable("newProductQty") Integer newProductQty) throws LogException, ProductException
 	{
 		Product p1 = aService.updateProductQuantity(adminId, productId, newProductQty);
@@ -42,7 +58,7 @@ public class AdminController {
 		return new ResponseEntity<Product>(p1, HttpStatus.CREATED);
 	}
 	
-	@GetMapping("/admin/{adminId}")
+	@GetMapping("/admin/view-all-users/{adminId}")
 	public ResponseEntity<List<User>> viewAllUsers(@PathVariable("adminId") Integer adminId) throws UserException, LogException
 	{
 		List<User> users = aService.viewAllUsers(adminId);
@@ -50,7 +66,7 @@ public class AdminController {
 		return new ResponseEntity<List<User>>(users, HttpStatus.CREATED);
 	}
 	
-	@GetMapping("/admin/{adminId}/{userId}")
+	@GetMapping("/admin/view-user-by-id/{adminId}/{userId}")
 	public ResponseEntity<User> viewUserById(@PathVariable("adminId") Integer adminId, @PathVariable("userId") Integer userId) throws UserException, LogException
 	{
 		User user1 = aService.viewUserById(adminId, userId);

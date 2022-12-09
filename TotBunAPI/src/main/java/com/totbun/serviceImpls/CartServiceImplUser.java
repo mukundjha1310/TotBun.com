@@ -18,10 +18,10 @@ import com.totbun.repositories.CartRepo;
 import com.totbun.repositories.ProductRepo;
 import com.totbun.repositories.UserLogRepo;
 import com.totbun.repositories.UserRepo;
-import com.totbun.services.CartServices;
+import com.totbun.services.CartServicesUser;
 
 @Service
-public class CartServiceImpl implements CartServices{
+public class CartServiceImplUser implements CartServicesUser{
 	
 	@Autowired
 	private UserRepo uRepo;

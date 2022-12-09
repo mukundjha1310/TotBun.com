@@ -14,14 +14,14 @@ import com.totbun.exceptions.CartException;
 import com.totbun.exceptions.LogException;
 import com.totbun.exceptions.OrderException;
 import com.totbun.exceptions.PaymentException;
-import com.totbun.services.OrderService;
+import com.totbun.services.OrderServiceUser;
 
 @RestController
 @RequestMapping("/totbun")
-public class OrderController {
+public class OrderControllerUser {
 	
 	@Autowired
-	private OrderService oService;
+	private OrderServiceUser oService;
 	
 	@PostMapping("/order/{userId}/{paymentType}")
 	public ResponseEntity<String> placeOrder(@PathVariable("userId") Integer userId, @PathVariable("paymentType") String paymentType) throws LogException, CartException, PaymentException

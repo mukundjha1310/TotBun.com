@@ -13,14 +13,14 @@ import com.totbun.DTOs.CartAllDetailsDTO;
 import com.totbun.exceptions.CartException;
 import com.totbun.exceptions.LogException;
 import com.totbun.exceptions.ProductException;
-import com.totbun.services.CartServices;
+import com.totbun.services.CartServicesUser;
 
 @RestController
 @RequestMapping("/totbun")
-public class CartController {
+public class CartControllerUser {
 	
 	@Autowired
-	private CartServices cService;
+	private CartServicesUser cService;
 	
 	@PostMapping("/cart/{userId}/{productId}/{quantity}")
 	public ResponseEntity<String> addProductToCart(@PathVariable("userId") Integer userId, @PathVariable("productId") Integer productId, @PathVariable("quantity") Integer quantity) throws LogException, ProductException

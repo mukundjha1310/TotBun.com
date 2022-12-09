@@ -15,8 +15,4 @@ public interface UserServices {
 	public User viewPersonalDetails(Integer userId) throws UserException, LogException;
 	
 	
-	
-	
-	
-	
 }

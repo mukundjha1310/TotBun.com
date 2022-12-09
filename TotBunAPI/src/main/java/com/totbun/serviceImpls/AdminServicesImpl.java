@@ -95,7 +95,41 @@ public class AdminServicesImpl implements AdminServices{
 		}
 		else throw new LogException("Please Login as admin first...");
 		
+	}
+
+	@Override
+	public Product seeIndividualProductDetails(Integer adminId, Integer productId)
+			throws LogException, ProductException {
 		
+		Optional<CurrentAdminSession> cas = alRepo.findById(adminId);
+		
+		if(cas.isPresent())
+		{
+			Optional<Product> product = pRepo.findById(productId);
+			
+			if(product.isPresent()) 
+				return product.get();
+			else
+				throw new ProductException("Product does not exist with product Id "+productId);
+		}
+		else throw new LogException("Please Login as admin first...");
+	}
+
+	@Override
+	public List<Product> seeAllProductsDetails(Integer adminId) throws LogException, ProductException {
+		
+		Optional<CurrentAdminSession> cas = alRepo.findById(adminId);
+		
+		if(cas.isPresent())
+		{
+			List<Product> products = pRepo.findAll();
+			
+			if(!products.isEmpty()) 
+				return products;
+			else
+				throw new ProductException("No products found...");
+		}
+		else throw new LogException("Please Login as admin first...");
 	}
 
 }

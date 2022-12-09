@@ -8,7 +8,7 @@ import com.totbun.exceptions.LogException;
 import com.totbun.exceptions.OrderException;
 import com.totbun.exceptions.PaymentException;
 
-public interface OrderService {
+public interface OrderServiceUser {
 	
 	public String placeOrder(Integer userId, String paymentType) throws LogException, CartException, PaymentException;
 	

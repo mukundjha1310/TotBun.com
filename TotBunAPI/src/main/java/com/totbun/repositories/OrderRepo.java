@@ -10,5 +10,5 @@ import com.totbun.modules.Orders;
 public interface OrderRepo extends JpaRepository<Orders, Integer>{
 	
 	@Query("from Orders where user_id = ?1")
-	public List<Orders> searchOrders(Integer userId);
+	public List<Orders> searchOrdersByUserId(Integer userId);
 }

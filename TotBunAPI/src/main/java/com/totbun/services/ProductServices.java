@@ -10,13 +10,13 @@ public interface ProductServices {
 	
 	public List<ShowProductDTO> searchProductsByCategory(String productCategory) throws ProductException;
 	
-	public List<ShowProductDTO> sortProductsByPriceLowToHigh() throws ProductException;
+	public List<ShowProductDTO> sortProductsByPriceLowToHigh(String productCategory) throws ProductException;
 	
-	public List<ShowProductDTO> sortProductsByPriceHighToLow() throws ProductException;
+	public List<ShowProductDTO> sortProductsByPriceHighToLow(String productCategory) throws ProductException;
 	
-	public List<ShowProductDTO> sortProductsByRatingLowToHigh() throws ProductException;
+	public List<ShowProductDTO> sortProductsByRatingLowToHigh(String productCategory) throws ProductException;
 	
-	public List<ShowProductDTO> sortProductsByRatingHighToLow() throws ProductException;
+	public List<ShowProductDTO> sortProductsByRatingHighToLow(String productCategory) throws ProductException;
 	
 	public ShowProductDTO seeIndividualProductsDetails(Integer productId) throws ProductException;
 	

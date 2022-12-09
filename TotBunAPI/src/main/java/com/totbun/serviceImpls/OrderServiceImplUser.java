@@ -20,10 +20,10 @@ import com.totbun.repositories.CartRepo;
 import com.totbun.repositories.OrderRepo;
 import com.totbun.repositories.ProductRepo;
 import com.totbun.repositories.UserLogRepo;
-import com.totbun.services.OrderService;
+import com.totbun.services.OrderServiceUser;
 
 @Service
-public class OrderServiceImpl implements OrderService{
+public class OrderServiceImplUser implements OrderServiceUser{
 	
 	@Autowired
 	private ProductRepo pRepo;
@@ -90,7 +90,7 @@ public class OrderServiceImpl implements OrderService{
 		
 		if(cuser.isPresent())
 		{
-			List<Orders> orders = oRepo.searchOrders(userId);
+			List<Orders> orders = oRepo.searchOrdersByUserId(userId);
 			
 			if(orders.size() == 0)
 				throw new OrderException("No previous orders found...");
