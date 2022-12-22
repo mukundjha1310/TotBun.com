@@ -1,26 +1,27 @@
 package com.totbun.serviceImpls;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import com.totbun.DTOs.OrderDTO;
 import com.totbun.exceptions.LogException;
 import com.totbun.exceptions.OrderException;
 import com.totbun.exceptions.UserException;
 import com.totbun.modules.CurrentAdminSession;
 import com.totbun.modules.Orders;
+import com.totbun.modules.Sales;
 import com.totbun.modules.User;
 import com.totbun.repositories.AdminLogRepo;
 import com.totbun.repositories.OrderRepo;
-import com.totbun.repositories.ProductRepo;
+import com.totbun.repositories.SalesRepo;
 import com.totbun.repositories.UserRepo;
 import com.totbun.services.OrderServiceAdmin;
 
 @Service
 public class OrderServiceImplAdmin implements OrderServiceAdmin{
-	
-	@Autowired
-	private ProductRepo pRepo;
 	
 	@Autowired
 	private AdminLogRepo alRepo;
@@ -30,6 +31,9 @@ public class OrderServiceImplAdmin implements OrderServiceAdmin{
 	
 	@Autowired
 	private UserRepo uRepo;
+	
+	@Autowired
+	private SalesRepo sRepo;
 
 	@Override
 	public List<Orders> seeAllOrdersDetails(Integer adminId) throws LogException, OrderException {
@@ -49,7 +53,7 @@ public class OrderServiceImplAdmin implements OrderServiceAdmin{
 	}
 
 	@Override
-	public Orders updateOrderStatus(Integer adminId, Integer orderId, String newOrderStatus)
+	public OrderDTO updateOrderStatus(Integer adminId, Integer orderId, String newOrderStatus)
 			throws LogException, OrderException {
 		
 		Optional<CurrentAdminSession> cas = alRepo.findById(adminId);
@@ -61,9 +65,25 @@ public class OrderServiceImplAdmin implements OrderServiceAdmin{
 			if(orders.isPresent())
 			{
 				Orders o = orders.get();
-				o.setOrderStatus(newOrderStatus);
 				
-				return oRepo.save(o);
+				if(newOrderStatus.equals("Delivered"))
+				{
+					Sales sales = new Sales();
+					sales.setUser(o.getUser());
+					sales.setProduct(o.getProduct());
+					sales.setQuantity(o.getQuantity());
+					sales.setTotalPrice(o.getTotalPrice());
+					sales.setDeliveryDate(LocalDate.now());
+					sales.setPaymentType(o.getPaymentType());
+					sales.setOrderStatus(newOrderStatus);
+					sRepo.save(sales);
+				}
+				
+				o.setOrderStatus(newOrderStatus);
+				Orders res = oRepo.save(o);
+				
+				return new OrderDTO(orderId, res.getUser().getUserId(), res.getProduct().getProductId(), 
+						res.getQuantity(), res.getTotalPrice(), res.getOrderDate(), newOrderStatus);
 			}
 			else
 				throw new OrderException("No Order found with this order Id "+orderId);
@@ -83,7 +103,7 @@ public class OrderServiceImplAdmin implements OrderServiceAdmin{
 			
 			if(user.isPresent())
 			{
-				List<Orders> orders = oRepo.searchOrdersByUserId(userId);
+				List<Orders> orders = oRepo.findByUser(user.get());
 				
 				if(!orders.isEmpty())
 					return orders;

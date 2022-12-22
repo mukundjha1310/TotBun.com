@@ -1,5 +1,6 @@
 package com.totbun.serviceImpls;
 
+import java.util.List;
 import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -22,7 +23,7 @@ public class UserServiceImpl implements UserServices{
 	
 
 	@Override
-	public User registerUser(User user) throws UserException, LogException {
+	public User registerUser(User user) throws UserException {
 		
 		User user1 = uRepo.findByEmailId(user.getEmailId());
 		
@@ -48,7 +49,6 @@ public class UserServiceImpl implements UserServices{
 		}
 		else
 			throw new LogException("Your userId is incorrect or you are not logged In.");
-		
 		
 	}
 
@@ -77,14 +77,17 @@ public class UserServiceImpl implements UserServices{
 	}
 
 	@Override
-	public User viewPersonalDetails(Integer userId) throws UserException, LogException {
+	public User viewPersonalDetails() throws LogException {
 		
-		Optional<User> user1 = uRepo.findById(userId);
+		List<CurrentUserSession> cus = ulRepo.findAll();
 		
-		if(user1.isPresent()) 
-			return user1.get();
+		if(cus.size() == 1)
+		{
+			Optional<User> u1 = uRepo.findById(cus.get(0).getUserId());
+			return u1.get();
+		}
 		else
-			throw new UserException("User does not exist with user Id "+user1.get().getUserId());
+			throw new LogException("You are not logged in please log in first..!");
 	}
 
 	

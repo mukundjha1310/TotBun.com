@@ -9,7 +9,6 @@ import com.totbun.modules.User;
 
 public interface AdminServices {
 	
-	
 	public Product addNewProduct(Integer adminId, Product product) throws LogException, ProductException;
 	
 	public Product seeIndividualProductDetails(Integer adminId, Integer productId) throws LogException, ProductException;

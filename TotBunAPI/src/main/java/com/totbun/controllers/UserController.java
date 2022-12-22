@@ -12,10 +12,7 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import com.totbun.DTOs.CartAllDetailsDTO;
-import com.totbun.exceptions.CartException;
 import com.totbun.exceptions.LogException;
-import com.totbun.exceptions.ProductException;
 import com.totbun.exceptions.UserException;
 import com.totbun.modules.User;
 import com.totbun.services.UserServices;
@@ -27,16 +24,15 @@ public class UserController {
 	@Autowired
 	private UserServices uService;
 	
-	
-	@PostMapping("/users")
-	public ResponseEntity<User> registerUser(@Valid @RequestBody User user) throws UserException, LogException
+	@PostMapping("/users/register")
+	public ResponseEntity<User> registerUser(@Valid @RequestBody User user) throws UserException
 	{
 		User user1 = uService.registerUser(user);
 		
 		return new ResponseEntity<User>(user1, HttpStatus.CREATED);
 	}
 	
-	@PutMapping("/users")
+	@PutMapping("/users/update")
 	public ResponseEntity<User> updateUser(@Valid @RequestBody User user) throws UserException, LogException
 	{
 		User user1 = uService.updateUser(user);
@@ -44,7 +40,7 @@ public class UserController {
 		return new ResponseEntity<User>(user1, HttpStatus.OK);
 	}
 	
-	@DeleteMapping("/users/{userId}")
+	@DeleteMapping("/users/delete/{userId}")
 	public ResponseEntity<User> deleteUser(@PathVariable("userId") Integer userId) throws UserException, LogException
 	{
 		User user1 = uService.deleteUser(userId);
@@ -52,10 +48,10 @@ public class UserController {
 		return new ResponseEntity<User>(user1, HttpStatus.OK);
 	}
 	
-	@GetMapping("/users/{userId}")
-	public ResponseEntity<User> viewPersonalDetails(@PathVariable("userId") Integer userId) throws UserException, LogException
+	@GetMapping("/users/pesonal-details")
+	public ResponseEntity<User> viewPersonalDetails() throws LogException
 	{
-		User user1 = uService.deleteUser(userId);
+		User user1 = uService.viewPersonalDetails();
 		
 		return new ResponseEntity<User>(user1, HttpStatus.FOUND);
 	}

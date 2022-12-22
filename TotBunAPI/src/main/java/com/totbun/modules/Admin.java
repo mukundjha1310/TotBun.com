@@ -17,21 +17,4 @@ public class Admin {
 	private String adminUserName;
 	private String adminPassword;
 	
-	
-	//insert into admin values(4,'1234m','mukund');
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
 }

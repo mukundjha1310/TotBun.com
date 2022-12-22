@@ -31,7 +31,7 @@ public class OrderControllerUser {
 		return new ResponseEntity<String>(message, HttpStatus.ACCEPTED);
 	}
 	
-	@GetMapping("/order/{userId}")
+	@GetMapping("/order-history/{userId}")
 	public ResponseEntity<List<OrderHistoryDTO>> seeOrderHistory(@PathVariable("userId") Integer userId) throws LogException, OrderException
 	{
 		List<OrderHistoryDTO> orderHistories  = oService.seeOrderHistory(userId);

@@ -16,10 +16,12 @@ import com.totbun.modules.Cart;
 import com.totbun.modules.CurrentUserSession;
 import com.totbun.modules.Orders;
 import com.totbun.modules.Product;
+import com.totbun.modules.User;
 import com.totbun.repositories.CartRepo;
 import com.totbun.repositories.OrderRepo;
 import com.totbun.repositories.ProductRepo;
 import com.totbun.repositories.UserLogRepo;
+import com.totbun.repositories.UserRepo;
 import com.totbun.services.OrderServiceUser;
 
 @Service
@@ -30,6 +32,9 @@ public class OrderServiceImplUser implements OrderServiceUser{
 	
 	@Autowired
 	private CartRepo cRepo;
+	
+	@Autowired
+	private UserRepo uRepo;
 	
 	@Autowired
 	private UserLogRepo ulRepo;
@@ -90,7 +95,10 @@ public class OrderServiceImplUser implements OrderServiceUser{
 		
 		if(cuser.isPresent())
 		{
-			List<Orders> orders = oRepo.searchOrdersByUserId(userId);
+			@SuppressWarnings("deprecation")
+			User user = uRepo.getById(userId);
+		
+			List<Orders> orders = oRepo.findByUser(user);
 			
 			if(orders.size() == 0)
 				throw new OrderException("No previous orders found...");

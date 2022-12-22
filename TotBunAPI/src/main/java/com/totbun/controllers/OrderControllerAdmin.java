@@ -9,6 +9,8 @@ import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+
+import com.totbun.DTOs.OrderDTO;
 import com.totbun.exceptions.LogException;
 import com.totbun.exceptions.OrderException;
 import com.totbun.exceptions.UserException;
@@ -31,12 +33,12 @@ public class OrderControllerAdmin {
 	}
 	
 	@PatchMapping("/order/{adminId}/{orderId}/{newOrderStatus}")
-	public ResponseEntity<Orders> seeAllOrdersDetails(@PathVariable("adminId") Integer adminId, 
+	public ResponseEntity<OrderDTO> updateOrderStatus(@PathVariable("adminId") Integer adminId, 
 			@PathVariable("orderId") Integer orderId, @PathVariable("newOrderStatus") String newOrderStatus) throws LogException, OrderException
 	{
-		Orders order  = oService.updateOrderStatus(adminId, orderId, newOrderStatus);
+		OrderDTO order  = oService.updateOrderStatus(adminId, orderId, newOrderStatus);
 		
-		return new ResponseEntity<Orders>(order, HttpStatus.FOUND);
+		return new ResponseEntity<OrderDTO>(order, HttpStatus.FOUND);
 	}
 	
 	@GetMapping("/order/{adminId}/{userId}")
