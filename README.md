@@ -33,7 +33,7 @@ I have developed this SpringBoot REST API for a E-Commerce Website Web-Applicati
 # Features
 - User authentication & validation with Spring Security with JWT.
 
-# Admin/Saler Features:
+# Admin/Seller Features:
 - Login & Logout.
 - Add new Products.
 - Update Quantity.
