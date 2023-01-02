@@ -22,8 +22,8 @@ public class Orders {
 	private Integer orderId;
 	
 	@ManyToOne
-	@JoinColumn(name = "user_Id")
-	private User user;
+	@JoinColumn(name = "customer_Id")
+	private Customer customer;
 	
 	@ManyToOne
 	@JoinColumn(name = "product_Id")

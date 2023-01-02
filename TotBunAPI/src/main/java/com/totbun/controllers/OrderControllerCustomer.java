@@ -11,30 +11,29 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import com.totbun.DTOs.OrderHistoryDTO;
 import com.totbun.exceptions.CartException;
-import com.totbun.exceptions.LogException;
 import com.totbun.exceptions.OrderException;
 import com.totbun.exceptions.PaymentException;
-import com.totbun.services.OrderServiceUser;
+import com.totbun.services.OrderServiceCustomer;
 
 @RestController
 @RequestMapping("/totbun")
-public class OrderControllerUser {
+public class OrderControllerCustomer {
 	
 	@Autowired
-	private OrderServiceUser oService;
+	private OrderServiceCustomer oService;
 	
-	@PostMapping("/order/{userId}/{paymentType}")
-	public ResponseEntity<String> placeOrder(@PathVariable("userId") Integer userId, @PathVariable("paymentType") String paymentType) throws LogException, CartException, PaymentException
+	@PostMapping("/order/place-order/{paymentType}")
+	public ResponseEntity<String> placeOrder(@PathVariable("paymentType") String paymentType) throws CartException, PaymentException
 	{
-		String message  = oService.placeOrder(userId, paymentType);
+		String message  = oService.placeOrder(paymentType);
 		
 		return new ResponseEntity<String>(message, HttpStatus.ACCEPTED);
 	}
 	
-	@GetMapping("/order-history/{userId}")
-	public ResponseEntity<List<OrderHistoryDTO>> seeOrderHistory(@PathVariable("userId") Integer userId) throws LogException, OrderException
+	@GetMapping("/order/history/order-history")
+	public ResponseEntity<List<OrderHistoryDTO>> seeOrderHistory() throws OrderException
 	{
-		List<OrderHistoryDTO> orderHistories  = oService.seeOrderHistory(userId);
+		List<OrderHistoryDTO> orderHistories  = oService.seeOrderHistory();
 		
 		return new ResponseEntity<List<OrderHistoryDTO>>(orderHistories, HttpStatus.FOUND);
 	}

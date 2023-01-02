@@ -5,13 +5,12 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Data
-@AllArgsConstructor
 @NoArgsConstructor
-public class UserDTO {
+@AllArgsConstructor
+public class CustomerDTO {
 	
-	private Integer userId;
-	
+	private Integer customerId;
 	private String name;
-	
 	private String emailId;
+
 }

@@ -8,8 +8,6 @@ import com.totbun.modules.Product;
 @Repository
 public interface ProductRepo extends JpaRepository<Product, Integer>{
 	
-	//@Query("from product where product_title like :productName")
-	
 	public List<Product> findByProductTitleContainingIgnoreCase(String productName);
 	
 	public List<Product> findByProductCategoryContainingIgnoreCase(String category);

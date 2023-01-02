@@ -7,7 +7,7 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class UserAddress {
+public class CustomerAddress {
 	
 	private Integer flatOrHouseNo;
 	private String areaOrStreet;

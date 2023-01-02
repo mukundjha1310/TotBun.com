@@ -1,4 +1,4 @@
-package com.totbun.DTOs;
+package com.totbun.payload.response;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -7,9 +7,8 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class AdminLoginDTO {
-
-	private String emailId;
-	private String password;
-
+public class MessageResponse {
+	
+	private String message;
+	
 }

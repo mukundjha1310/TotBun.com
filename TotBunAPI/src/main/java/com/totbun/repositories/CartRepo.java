@@ -11,7 +11,7 @@ import com.totbun.modules.Cart;
 public interface CartRepo extends JpaRepository<Cart, Integer>{
 	
 	@Query("from Cart where user_id = ?1")
-	public List<Cart> findByUser(Integer userId);
+	public List<Cart> findByCustomerId(Integer customerId);
 	
 	@Query("from Cart where user_id = ?1 and  product_id= ?2")
 	public Cart findCartByProductId(Integer userId, Integer productId);

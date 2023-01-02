@@ -23,7 +23,7 @@ public class Sales {
 	
 	@ManyToOne
 	@JoinColumn(name = "user_Id")
-	private User user;
+	private Customer user;
 	
 	@ManyToOne
 	@JoinColumn(name = "product_Id")

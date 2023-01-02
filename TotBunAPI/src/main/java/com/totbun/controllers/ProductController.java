@@ -14,7 +14,7 @@ import com.totbun.services.ProductServices;
 
 @RestController
 @RequestMapping("/totbun")
-public class ProductControllerUser {
+public class ProductController {
 	
 	@Autowired
 	private ProductServices pService;

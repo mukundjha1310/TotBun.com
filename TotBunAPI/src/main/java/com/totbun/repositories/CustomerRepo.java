@@ -3,11 +3,11 @@ package com.totbun.repositories;
 import java.util.Optional;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
-import com.totbun.modules.User;
+import com.totbun.modules.Customer;
 
 @Repository
-public interface UserRepo extends JpaRepository<User, Integer>{
+public interface CustomerRepo extends JpaRepository<Customer, Integer>{
 	
-	Optional<User> findByEmailId(String emailId);
+	Optional<Customer> findByEmailId(String emailId);
 	
 }

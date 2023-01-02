@@ -23,8 +23,8 @@ public class GlobleExceptionHandler {
 
 	}
 	
-	@ExceptionHandler(UserException.class)
-	public ResponseEntity<MyErrorDetails> otherExceptionHandler(UserException ue, WebRequest wReq) {
+	@ExceptionHandler(CustomerException.class)
+	public ResponseEntity<MyErrorDetails> otherExceptionHandler(CustomerException ue, WebRequest wReq) {
 
 		MyErrorDetails error = new MyErrorDetails();
 		error.setTimestamp(LocalDateTime.now());
@@ -53,18 +53,6 @@ public class GlobleExceptionHandler {
 		MyErrorDetails error = new MyErrorDetails();
 		error.setTimestamp(LocalDateTime.now());
 		error.setMessage(oe.getMessage());
-		error.setDetails(wReq.getDescription(false));
-
-		return new ResponseEntity<MyErrorDetails>(error, HttpStatus.BAD_REQUEST);
-
-	}
-	
-	@ExceptionHandler(LogException.class)
-	public ResponseEntity<MyErrorDetails> otherExceptionHandler(LogException le, WebRequest wReq) {
-
-		MyErrorDetails error = new MyErrorDetails();
-		error.setTimestamp(LocalDateTime.now());
-		error.setMessage(le.getMessage());
 		error.setDetails(wReq.getDescription(false));
 
 		return new ResponseEntity<MyErrorDetails>(error, HttpStatus.BAD_REQUEST);

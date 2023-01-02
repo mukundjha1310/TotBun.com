@@ -1,23 +1,22 @@
 package com.totbun.services;
 
 import java.util.List;
-import com.totbun.exceptions.LogException;
 import com.totbun.exceptions.ProductException;
-import com.totbun.exceptions.UserException;
+import com.totbun.exceptions.CustomerException;
 import com.totbun.modules.Product;
-import com.totbun.modules.User;
+import com.totbun.modules.Customer;
 
 public interface AdminServices {
 	
-	public Product addNewProduct(Integer adminId, Product product) throws LogException, ProductException;
+	public Product addNewProduct(Product product) throws ProductException;
 	
-	public Product seeIndividualProductDetails(Integer adminId, Integer productId) throws LogException, ProductException;
+	public Product seeIndividualProductDetails(Integer productId) throws ProductException;
 	
-	public List<Product> seeAllProductsDetails(Integer adminId) throws LogException, ProductException;
+	public List<Product> seeAllProductsDetails() throws ProductException;
 	
-	public Product updateProductQuantity(Integer adminId, Integer productId, Integer productQty) throws LogException, ProductException;
+	public Product updateProductQuantity(Integer productId, Integer productQty) throws ProductException;
 	
-	public List<User> viewAllUsers(Integer adminId) throws UserException, LogException;
+	public List<Customer> viewAllCustomers() throws CustomerException;
 	
-	public User viewUserById(Integer adminId, Integer userId) throws UserException, LogException;
+	public Customer viewCustomerById(Integer customerId) throws CustomerException;
 }

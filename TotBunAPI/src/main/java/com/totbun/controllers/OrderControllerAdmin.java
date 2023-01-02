@@ -9,11 +9,9 @@ import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-
 import com.totbun.DTOs.OrderDTO;
-import com.totbun.exceptions.LogException;
 import com.totbun.exceptions.OrderException;
-import com.totbun.exceptions.UserException;
+import com.totbun.exceptions.CustomerException;
 import com.totbun.modules.Orders;
 import com.totbun.services.OrderServiceAdmin;
 
@@ -24,27 +22,26 @@ public class OrderControllerAdmin {
 	@Autowired
 	private OrderServiceAdmin oService;
 	
-	@GetMapping("/order/{adminId}")
-	public ResponseEntity<List<Orders>> seeAllOrdersDetails(@PathVariable("adminId") Integer adminId) throws LogException, OrderException
+	@GetMapping("/order/see-all-orders-details")
+	public ResponseEntity<List<Orders>> seeAllOrdersDetails() throws OrderException
 	{
-		List<Orders> orders  = oService.seeAllOrdersDetails(adminId);
+		List<Orders> orders  = oService.seeAllOrdersDetails();
 		
 		return new ResponseEntity<List<Orders>>(orders, HttpStatus.FOUND);
 	}
 	
-	@PatchMapping("/order/{adminId}/{orderId}/{newOrderStatus}")
-	public ResponseEntity<OrderDTO> updateOrderStatus(@PathVariable("adminId") Integer adminId, 
-			@PathVariable("orderId") Integer orderId, @PathVariable("newOrderStatus") String newOrderStatus) throws LogException, OrderException
+	@PatchMapping("/order/{orderId}/{newOrderStatus}")
+	public ResponseEntity<OrderDTO> updateOrderStatus(@PathVariable("orderId") Integer orderId, @PathVariable("newOrderStatus") String newOrderStatus) throws OrderException
 	{
-		OrderDTO order  = oService.updateOrderStatus(adminId, orderId, newOrderStatus);
+		OrderDTO order  = oService.updateOrderStatus(orderId, newOrderStatus);
 		
 		return new ResponseEntity<OrderDTO>(order, HttpStatus.FOUND);
 	}
 	
-	@GetMapping("/order/{adminId}/{userId}")
-	public ResponseEntity<List<Orders>> searchOrdersByUserId(@PathVariable("adminId") Integer adminId, @PathVariable("userId") Integer userId) throws LogException, OrderException, UserException
+	@GetMapping("/order/search-order{customerId}")
+	public ResponseEntity<List<Orders>> searchOrdersByCustomerId(@PathVariable("customerId") Integer customerId) throws OrderException, CustomerException
 	{
-		List<Orders> orders  = oService.searchOrdersByUserId(adminId, userId);
+		List<Orders> orders  = oService.searchOrdersByCustomerId(customerId);
 		
 		return new ResponseEntity<List<Orders>>(orders, HttpStatus.FOUND);
 	}
