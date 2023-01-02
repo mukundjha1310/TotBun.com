@@ -32,7 +32,6 @@ public class CustomerLogController {
 	@PostMapping("/customers/customer-login")
 	public ResponseEntity<?> customerLogIn(@RequestBody CustomerLoginDTO loginDetails) 
 	{
-		
 		authenticationManager.authenticate(
 				new UsernamePasswordAuthenticationToken(loginDetails.getEmailId(), loginDetails.getPassword()));
 		

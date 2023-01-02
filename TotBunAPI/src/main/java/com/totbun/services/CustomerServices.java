@@ -6,12 +6,12 @@ import com.totbun.modules.Customer;
 
 public interface CustomerServices {
 
-	String registerCustomer(RegisterCustomerDTO customerDetails) throws CustomerException;
+	public String registerCustomer(RegisterCustomerDTO customerDetails) throws CustomerException;
 
-	Customer updateCustomer(Customer customer) throws CustomerException;
+	public Customer updateCustomer(Customer customer) throws CustomerException;
 
-	Customer deleteCustomer(Integer customerId) throws CustomerException;
+	public Customer deleteCustomer(Integer customerId) throws CustomerException;
 
-	Customer viewPersonalDetails() throws CustomerException;
+	public Customer viewPersonalDetails() throws CustomerException;
 
 }
