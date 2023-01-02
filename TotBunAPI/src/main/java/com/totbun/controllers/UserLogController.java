@@ -8,17 +8,17 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import com.totbun.DTOs.CustomerLoginDTO;
+import com.totbun.DTOs.UserLoginDTO;
 import com.totbun.payload.response.JwtResponse;
 import com.totbun.security.jwt.JWTUtils;
 import com.totbun.security.services.UserDetailsServiceImpl;
-import io.swagger.v3.oas.annotations.parameters.RequestBody;
 
 @RestController
 @RequestMapping("/totbun")
-public class CustomerLogController {
+public class UserLogController {
 	
 	@Autowired
 	private UserDetailsServiceImpl userDetailsServiceImpl;
@@ -29,8 +29,8 @@ public class CustomerLogController {
 	@Autowired
 	private JWTUtils jwtUtils;
 	
-	@PostMapping("/customers/customer-login")
-	public ResponseEntity<?> customerLogIn(@RequestBody CustomerLoginDTO loginDetails) 
+	@PostMapping("/user/login-user")
+	public ResponseEntity<?> userLogIn(@RequestBody UserLoginDTO loginDetails)
 	{
 		authenticationManager.authenticate(
 				new UsernamePasswordAuthenticationToken(loginDetails.getEmailId(), loginDetails.getPassword()));
@@ -43,9 +43,9 @@ public class CustomerLogController {
 		return new ResponseEntity<>("Invalid admin log in details..!", HttpStatus.BAD_REQUEST);
 	}
 	
-	@GetMapping("/customers/customer-logout")
-	public ResponseEntity<String> customerLogOut()
-	{
+	@GetMapping("/user/logout-user")
+	public ResponseEntity<String> userLogOut() {
+		
 		return new ResponseEntity<String>("", HttpStatus.OK);
 	}
 	

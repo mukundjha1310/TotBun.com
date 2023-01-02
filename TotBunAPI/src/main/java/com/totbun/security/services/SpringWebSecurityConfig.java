@@ -79,8 +79,8 @@ public class SpringWebSecurityConfig {
 				"/totbun/order/place-order/{paymentType}", "/totbun/order/history/order-history"
 				).hasAuthority("CUSTOMER")
 		
-		.antMatchers("/totbun/admin/login-admin", "/totbun/customers/register", 
-				"/totbun/customers/customer-login", "/totbun/products/search-by-name/{productName}", 
+		.antMatchers("/totbun/user/login-user", "/totbun/user/logout-user", 
+				"/totbun/customers/register", "/totbun/products/search-by-name/{productName}", 
 				"/totbun/products/search-by-category/{productCategory}", "/totbun/products/sort-by-price-low-to-high/{productCategory}", 
 				"/totbun/products/sort-by-price-high-to-low/{productCategory}", "/totbun/products/sort-by-rating-low-to-high/{productCategory}", 
 				"/totbun/products/sort-by-rating-high-to-low/{productCategory}", "/totbun/products/see-individual-product-Details/{productId}"
