@@ -1,6 +1,6 @@
 # TotBun.com (E-Commerce Website - REST API)
 
-<img src="https://camo.githubusercontent.com/9cef08fefd36a3902bb918a2d82631aa8183c98c9b6dffa3f95cbaffe49101fd/68747470733a2f2f6769746c61622e667265656465736b746f702e6f72672f646275732f7a6275732f2d2f7261772f6d61696e2f7a6275732d706978656c732e676966" alt="Coding" width="80%"/>
+<img src="https://user-images.githubusercontent.com/105915717/210246297-f6528259-73d0-4104-bd4b-702bf3d6500c.png" alt="Coding" width="80%"/>
 <br>
 
 I have developed this SpringBoot REST API for a E-Commerce Website Web-Application. This API performs all the fundamental CRUD operations of any E-Commerce Website with User validation at every step using Spring Security. Basically, by using this REST API a frontend developer can design a very efficient web page.
@@ -34,6 +34,7 @@ I have developed this SpringBoot REST API for a E-Commerce Website Web-Applicati
 - User authentication & validation with Spring Security with JWT.
 
 # Admin/Saler Features:
+- Login & Logout.
 - Add new Products.
 - Update Quantity.
 - View total sales by different time periods.
