@@ -3,7 +3,7 @@
 <img src="https://user-images.githubusercontent.com/105915717/210246297-f6528259-73d0-4104-bd4b-702bf3d6500c.png" alt="Coding" width="80%"/>
 <br>
 
-I have developed this SpringBoot REST API for a E-Commerce Website Web-Application. This API performs all the fundamental CRUD operations of any E-Commerce Website with User validation at every step using Spring Security. Basically, by using this REST API a frontend developer can design a very efficient web page.
+I have developed this SpringBoot REST API for an E-Commerce Website Web-Application. This API performs all the fundamental CRUD operations of any E-Commerce Website with User validation at every step using Spring Security. Basically, by using this REST API a frontend developer can design a very efficient web page.
 
 # Tech Stack
 - Java
