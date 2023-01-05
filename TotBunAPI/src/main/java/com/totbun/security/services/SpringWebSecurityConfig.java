@@ -85,6 +85,8 @@ public class SpringWebSecurityConfig {
 				"/totbun/products/sort-by-price-high-to-low/{productCategory}", "/totbun/products/sort-by-rating-low-to-high/{productCategory}", 
 				"/totbun/products/sort-by-rating-high-to-low/{productCategory}", "/totbun/products/see-individual-product-Details/{productId}"
 				).permitAll()
+
+        .antMatchers(AUTH_WHITELIST).permitAll()
 		
 		.anyRequest().authenticated();
 		
@@ -94,5 +96,17 @@ public class SpringWebSecurityConfig {
 		
 		return http.build();
 	}
+	
+	private static final String[] AUTH_WHITELIST = {
+            "/v2/api-docs",
+            "/swagger-resources",
+            "/swagger-resources/**",
+            "/configuration/ui",
+            "/configuration/security",
+            "/swagger-ui.html",
+            "/webjars/**",
+            "/v3/api-docs/**",
+            "/swagger-ui/**"
+    };
 
 }
