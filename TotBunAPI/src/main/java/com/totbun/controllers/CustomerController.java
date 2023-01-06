@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import com.totbun.DTOs.RegisterCustomerDTO;
+import com.totbun.DTOs.CustomerRegisterDTO;
 import com.totbun.exceptions.CustomerException;
 import com.totbun.modules.Customer;
 import com.totbun.services.CustomerServices;
@@ -27,7 +27,7 @@ public class CustomerController {
 	PasswordEncoder encoder;
 	
 	@PostMapping("/customers/register")
-	public ResponseEntity<String> registerUser(@Valid @RequestBody RegisterCustomerDTO customerDetails) throws CustomerException
+	public ResponseEntity<String> registerUser(@Valid @RequestBody CustomerRegisterDTO customerDetails) throws CustomerException
 	{
 		customerDetails.setPassword(encoder.encode(customerDetails.getPassword()));
 		

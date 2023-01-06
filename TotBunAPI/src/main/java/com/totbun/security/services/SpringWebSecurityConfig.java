@@ -17,6 +17,7 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 
 import com.totbun.security.jwt.AuthJwtEntryPoint;
 import com.totbun.security.jwt.JwtAuthFilter;
+import com.totbun.security.jwt.RestAccessDeniedHandler;
 
 @Configuration
 @EnableWebSecurity
@@ -28,6 +29,9 @@ public class SpringWebSecurityConfig {
 	
 	@Autowired
 	private AuthJwtEntryPoint authJwtEntryPoint;
+	
+	@Autowired
+	private RestAccessDeniedHandler accessDeniedHandler;
 	
 	@Autowired
 	private JwtAuthFilter jwtAuthFilter;
@@ -58,7 +62,7 @@ public class SpringWebSecurityConfig {
 	SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception
 	{
 		http.cors().and().csrf().disable()
-		.exceptionHandling().authenticationEntryPoint(authJwtEntryPoint)
+		.exceptionHandling().authenticationEntryPoint(authJwtEntryPoint).accessDeniedHandler(accessDeniedHandler)
 		.and()
 		.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
 		.and()
@@ -79,7 +83,7 @@ public class SpringWebSecurityConfig {
 				"/totbun/order/place-order/{paymentType}", "/totbun/order/history/order-history"
 				).hasAuthority("CUSTOMER")
 		
-		.antMatchers("/totbun/user/login-user", "/totbun/user/logout-user", 
+		.antMatchers("/totbun/user/login-user", "/totbun/user/logout-user", "/totbun/admin/register",
 				"/totbun/customers/register", "/totbun/products/search-by-name/{productName}", 
 				"/totbun/products/search-by-category/{productCategory}", "/totbun/products/sort-by-price-low-to-high/{productCategory}", 
 				"/totbun/products/sort-by-price-high-to-low/{productCategory}", "/totbun/products/sort-by-rating-low-to-high/{productCategory}", 

@@ -12,7 +12,6 @@ import org.springframework.web.bind.annotation.RestController;
 import com.totbun.DTOs.OrderDTO;
 import com.totbun.exceptions.OrderException;
 import com.totbun.exceptions.CustomerException;
-import com.totbun.modules.Orders;
 import com.totbun.services.OrderServiceAdmin;
 
 @RestController
@@ -23,11 +22,11 @@ public class OrderControllerAdmin {
 	private OrderServiceAdmin oService;
 	
 	@GetMapping("/order/see-all-orders-details")
-	public ResponseEntity<List<Orders>> seeAllOrdersDetails() throws OrderException
+	public ResponseEntity<List<OrderDTO>> seeAllOrdersDetails() throws OrderException
 	{
-		List<Orders> orders  = oService.seeAllOrdersDetails();
+		List<OrderDTO> orders  = oService.seeAllOrdersDetails();
 		
-		return new ResponseEntity<List<Orders>>(orders, HttpStatus.FOUND);
+		return new ResponseEntity<List<OrderDTO>>(orders, HttpStatus.FOUND);
 	}
 	
 	@PatchMapping("/order/{orderId}/{newOrderStatus}")
@@ -39,11 +38,11 @@ public class OrderControllerAdmin {
 	}
 	
 	@GetMapping("/order/search-order{customerId}")
-	public ResponseEntity<List<Orders>> searchOrdersByCustomerId(@PathVariable("customerId") Integer customerId) throws OrderException, CustomerException
+	public ResponseEntity<List<OrderDTO>> searchOrdersByCustomerId(@PathVariable("customerId") Integer customerId) throws OrderException, CustomerException
 	{
-		List<Orders> orders  = oService.searchOrdersByCustomerId(customerId);
+		List<OrderDTO> orders  = oService.searchOrdersByCustomerId(customerId);
 		
-		return new ResponseEntity<List<Orders>>(orders, HttpStatus.FOUND);
+		return new ResponseEntity<List<OrderDTO>>(orders, HttpStatus.FOUND);
 	}
 
 }

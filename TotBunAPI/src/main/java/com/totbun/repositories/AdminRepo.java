@@ -1,5 +1,7 @@
 package com.totbun.repositories;
 
+import java.util.Optional;
+
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 import com.totbun.modules.Admin;
@@ -7,5 +9,5 @@ import com.totbun.modules.Admin;
 @Repository
 public interface AdminRepo extends JpaRepository<Admin, Integer>{
 	
-	public Admin findByAdminUserName(String adminUserName);
+	Optional<Admin> findByEmailId(String emailId);
 }

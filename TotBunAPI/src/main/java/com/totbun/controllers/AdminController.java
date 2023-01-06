@@ -1,9 +1,11 @@
 package com.totbun.controllers;
 
 import java.util.List;
+import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -13,6 +15,9 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import com.totbun.exceptions.ProductException;
+import com.totbun.DTOs.AdminRegisterDTO;
+import com.totbun.DTOs.CustomerDTO;
+import com.totbun.exceptions.AdminException;
 import com.totbun.exceptions.CustomerException;
 import com.totbun.modules.Product;
 import com.totbun.modules.Customer;
@@ -28,6 +33,19 @@ public class AdminController {
 	
 	@Autowired
 	private CustomerServices cService;
+	
+	@Autowired
+	PasswordEncoder encoder;
+	
+	@PostMapping("/admin/register")
+	public ResponseEntity<String> registerAdmin(@Valid @RequestBody AdminRegisterDTO adminDetails) throws AdminException
+	{
+		adminDetails.setPassword(encoder.encode(adminDetails.getPassword()));
+		
+		String user1 = aService.registerAdmin(adminDetails);
+		
+		return new ResponseEntity<String>(user1, HttpStatus.CREATED);
+	}
 	
 	@PostMapping("/admin/add-new-product")
 	public ResponseEntity<Product> AddNewProduct(@RequestBody Product product) throws ProductException
@@ -62,11 +80,11 @@ public class AdminController {
 	}
 	
 	@GetMapping("/admin/view-all-customers")
-	public ResponseEntity<List<Customer>> viewAllCustomers() throws CustomerException
+	public ResponseEntity<List<CustomerDTO>> viewAllCustomers() throws CustomerException
 	{
-		List<Customer> users = aService.viewAllCustomers();
+		List<CustomerDTO> users = aService.viewAllCustomers();
 		
-		return new ResponseEntity<List<Customer>>(users, HttpStatus.CREATED);
+		return new ResponseEntity<List<CustomerDTO>>(users, HttpStatus.CREATED);
 	}
 	
 	@GetMapping("/admin/view-customer-by-id/{customerId}")

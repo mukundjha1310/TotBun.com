@@ -12,7 +12,7 @@ public class OrderDTO {
 	
 	private Integer orderId;
 	
-	private Integer userId;
+	private Integer customerId;
 	
 	private Integer productId;
 	
@@ -20,7 +20,10 @@ public class OrderDTO {
 	
 	private Integer totalPrice;
 	
-	private LocalDate OrderDate;
+	private LocalDate orderDate;
+	
+	private String orderStatus;
 	
 	private String paymentType;
+	
 }

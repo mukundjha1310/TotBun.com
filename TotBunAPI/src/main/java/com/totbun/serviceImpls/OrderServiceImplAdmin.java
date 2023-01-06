@@ -1,6 +1,7 @@
 package com.totbun.serviceImpls;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,14 +30,23 @@ public class OrderServiceImplAdmin implements OrderServiceAdmin {
 	private SalesRepo sRepo;
 
 	@Override
-	public List<Orders> seeAllOrdersDetails() throws OrderException {
+	public List<OrderDTO> seeAllOrdersDetails() throws OrderException {
 
 		List<Orders> orders = oRepo.findAll();
+		
+		List<OrderDTO> orderDTO = new ArrayList<>();
 
 		if (!orders.isEmpty())
-			return orders;
+		{
+			for(Orders o:orders)
+				orderDTO.add(new OrderDTO(o.getOrderId(), o.getCustomer().getCustomerId(), 
+						o.getProduct().getProductId(), o.getQuantity(), o.getTotalPrice(), 
+						o.getOrderDate(), o.getOrderStatus(), o.getPaymentType()));
+			
+			return orderDTO;
+		}
 		else
-			throw new OrderException("No Orders found...");
+			throw new OrderException("No Orders found..!");
 
 	}
 
@@ -64,24 +74,34 @@ public class OrderServiceImplAdmin implements OrderServiceAdmin {
 			Orders res = oRepo.save(o);
 
 			return new OrderDTO(orderId, res.getCustomer().getCustomerId(), res.getProduct().getProductId(),
-					res.getQuantity(), res.getTotalPrice(), res.getOrderDate(), newOrderStatus);
+					res.getQuantity(), res.getTotalPrice(), res.getOrderDate(), o.getOrderStatus(), newOrderStatus);
 		} else
 			throw new OrderException("No Order found with this order Id " + orderId);
 
 	}
 
 	@Override
-	public List<Orders> searchOrdersByCustomerId(Integer customerId) throws OrderException, CustomerException {
+	public List<OrderDTO> searchOrdersByCustomerId(Integer customerId) throws OrderException, CustomerException {
 
 		Optional<Customer> customer = cRepo.findById(customerId);
 
 		if (customer.isPresent()) 
 		{
 			Customer cust = customer.get();
+			
 			List<Orders> orders = oRepo.findByCustomer(cust);
 
+			List<OrderDTO> orderDTO = new ArrayList<>();
+
 			if (!orders.isEmpty())
-				return orders;
+			{
+				for(Orders o:orders)
+					orderDTO.add(new OrderDTO(o.getOrderId(), o.getCustomer().getCustomerId(), 
+							o.getProduct().getProductId(), o.getQuantity(), o.getTotalPrice(), 
+							o.getOrderDate(), o.getOrderStatus(), o.getPaymentType()));
+				
+				return orderDTO;
+			}
 			else
 				throw new OrderException("No Orders placed by the user " + cust.getFirstName());
 		} else

@@ -7,7 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
-import com.totbun.DTOs.RegisterCustomerDTO;
+import com.totbun.DTOs.CustomerRegisterDTO;
 import com.totbun.exceptions.CustomerException;
 import com.totbun.modules.Customer;
 import com.totbun.modules.Role;
@@ -31,7 +31,7 @@ public class CustomerServiceImpl implements CustomerServices {
 	private UserRepo uRepo;
 
 	@Override
-	public String registerCustomer(RegisterCustomerDTO customerDetails) throws CustomerException {
+	public String registerCustomer(CustomerRegisterDTO customerDetails) throws CustomerException {
 
 		Optional<Customer> customer0 = custRepo.findByEmailId(customerDetails.getEmailId());
 
@@ -50,13 +50,13 @@ public class CustomerServiceImpl implements CustomerServices {
 					switch (role) {
 					case "admin":
 						UserRole adminRole = urRepo.findByUserRole(Role.ADMIN)
-								.orElseThrow(() -> new RuntimeException("Error: Admin Role is not found."));
+								.orElseThrow(() -> new RuntimeException("Error: admin Role is not found."));
 						roles.add(adminRole);
 
 						break;
 					case "customer":
 						UserRole studentRole = urRepo.findByUserRole(Role.CUSTOMER)
-								.orElseThrow(() -> new RuntimeException("Error: Customer Role is not found."));
+								.orElseThrow(() -> new RuntimeException("Error: customer Role is not found."));
 						roles.add(studentRole);
 						break;
 					}
@@ -109,7 +109,7 @@ public class CustomerServiceImpl implements CustomerServices {
 			uRepo.deleteById(customerId);
 			return user1.get();
 		} else
-			throw new CustomerException("Customer does not exist with user Id " + user1.get().getCustomerId());
+			throw new CustomerException("Customer does not exist with user Id " + customerId);
 
 	}
 
