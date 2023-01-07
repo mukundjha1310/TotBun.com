@@ -27,8 +27,10 @@ I have developed this SpringBoot REST API for an E-Commerce Website Web-Applicat
 - Order Module
 - Cart Module
 - Sales Module
-- Payment Module 
 - UserRole Module
+
+# DataBase ER Diagram
+![ER- Diagram TotBun](https://user-images.githubusercontent.com/105915717/211129706-6f11a011-9419-4994-9453-611777e1c03c.png)
 
 # Features
 - User authentication & validation with Spring Security with JWT.
