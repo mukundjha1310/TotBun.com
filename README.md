@@ -54,3 +54,7 @@ I have developed this SpringBoot REST API for an E-Commerce Website Web-Applicat
 - Place orders.
 - Make payment.
 - See order history, etc.
+
+![img1](https://user-images.githubusercontent.com/105915717/211196273-a4f048fb-3a91-4500-81f4-ba775224dcd8.png)
+![img2](https://user-images.githubusercontent.com/105915717/211196286-838fdff7-08ed-4a39-ac84-4a28ad23c54a.png)
+![img3](https://user-images.githubusercontent.com/105915717/211196313-b3f8d0e9-aa82-4e3f-8d1f-2af19474e7e9.png)
