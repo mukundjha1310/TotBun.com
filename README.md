@@ -5,7 +5,7 @@
 
 I have developed this SpringBoot REST API for an E-Commerce Website Web-Application. This API performs all the fundamental CRUD operations of any E-Commerce Website with User validation at every step using Spring Security. Basically, by using this REST API a frontend developer can design a very efficient web page.
 
-# Tech Stack
+# Tech Stacks :
 - Java
 - Spring Framework
 - Spring Boot
@@ -18,7 +18,7 @@ I have developed this SpringBoot REST API for an E-Commerce Website Web-Applicat
 - PostMan
 - Swagger
 
-# Modules
+# Modules :
 - Admin Module
 - Customer Module
 - CustomerAddress Module
@@ -29,13 +29,13 @@ I have developed this SpringBoot REST API for an E-Commerce Website Web-Applicat
 - Sales Module
 - UserRole Module
 
-# DataBase ER Diagram
+# DataBase ER Diagram :
 ![ER- Diagram TotBun](https://user-images.githubusercontent.com/105915717/211129706-6f11a011-9419-4994-9453-611777e1c03c.png)
 
-# Features
+# Features :
 - User authentication & validation with Spring Security with JWT.
 
-# Admin/Seller Features:
+# Admin/Seller Features :
 - Login & Logout.
 - Add new Products.
 - Update Quantity.
@@ -43,7 +43,7 @@ I have developed this SpringBoot REST API for an E-Commerce Website Web-Applicat
 - See customer details.
 - Update order status, etc.
 
-# Customer Features:
+# Customer Features :
 - Register him/herself.
 - Login & Logout.
 - See list of products.
